@@ -18,7 +18,7 @@ function editorsInit() {
   const editorInputBlock = editorsBlock.querySelector('.editor-input')
   let editorFrameStart = editorsBlock.querySelector('[data-element="editor-frame_start"]')
   const editorLine = editorsBlock.querySelector('[data-element="editor-line-output"]')
-  let flug = 'yaml'
+  let flug = 'YAML'
 
   lineNumbers(input)
   input.addEventListener('input', convertValue)
@@ -80,7 +80,7 @@ function editorsInit() {
       output.style.overflowX = 'hidden'
     }
 
-    if(flug === 'yaml') {
+    if(flug === 'YAML') {
       try{
         let result = yaml.load(input.value)
         if (result === null || result === undefined) {
@@ -97,7 +97,7 @@ function editorsInit() {
       }
     }
 
-    if(flug === 'json'){
+    if(flug === 'JSON'){
       try{
         let json = JSON.parse(input.value)
 
@@ -170,11 +170,11 @@ function editorsInit() {
         var a = document.createElement("a");
         a.href = url;
 
-        if(flug === 'yaml'){
+        if(flug === 'YAML'){
           a.download = "modify.json";
         }
 
-        if(flug === 'json'){
+        if(flug === 'JSON'){
           a.download = "modify.yaml";
         }
         
@@ -197,29 +197,33 @@ function editorsInit() {
     lineNumbers(input, false, 'reset')
     lineNumbers(output, false, 'reset')
     removeErrorStyles()
+    editorFrameStart.style.display = 'flex'
+    editorFrame.style.overflow = 'hidden'
+    editorLine.style.display = 'none'
+    output.style.overflowX = 'hidden'
   }
   
   function toogleTab (e) {
-    console.log(flug)
+    let position = e.currentTarget.dataset.position
     let tab = e.currentTarget.dataset.role
+
     if(tab === 'json'){
-      flug = 'json'
+      flug = position === 'input' ? 'JSON' : 'YAML'
       toogleClass(e)
       changeLoadPermission()
       clearAll()
+      input.placeholder = `Paste your ${flug} here`
     }
 
     if(tab === 'yaml'){
-      flug = 'yaml'
+      flug = position === 'input' ? 'YAML' : 'JSON'
       toogleClass(e)
       changeLoadPermission()
       clearAll()
+      input.placeholder = `Paste your ${flug} here`
     }
 
     function toogleClass (e) {
-      let position = e.currentTarget.dataset.position
-      let tab = e.currentTarget.dataset.role
-
       headerTabs.forEach(tab => tab.classList.remove('header__tab_active'))
 
       e.currentTarget.classList.add('header__tab_active')
