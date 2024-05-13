@@ -1,0 +1,26 @@
+{
+  "name": "script",
+  "version": "1.0.0",
+  "description": "webpack script",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "author": "solocomrade@mail.ru",
+  "license": "ISC",
+  "devDependencies": {
+    "css-minimizer-webpack-plugin": "^5.0.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.3",
+    "mini-css-extract-plugin": "^2.7.6",
+    "terser-webpack-plugin": "^5.3.9",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "css-loader": "^6.8.1",
+    "js-yaml": "^4.1.0",
+    "monaco-editor": "^0.48.0",
+    "style-loader": "^3.3.3"
+  }
+}
