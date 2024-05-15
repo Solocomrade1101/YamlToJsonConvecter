@@ -95,16 +95,64 @@ body {
   font-weight: medium;
 }
 
+.wrapper_full .content{
+  max-width: 702px;
+  margin: 0 auto;
+  padding: 44px 0 124px;
+}
+
+.wrapper_full .header{
+  margin-bottom: 24px;
+  padding: 0;
+  justify-content: center;
+}
+.wrapper_full .caption__fullScreen{
+  display: none;
+}
+
+.wrapper_full .editor-input{
+  height: 276px;
+}
+
+.wrapper_full .editor-frame{
+  height: 215px;
+}
+
+.wrapper_full .editor-frame_start{
+  height: 215px;
+}
+
 .content {
   padding: 24px 16px 20px;
 }
 
-.caption {
+.header{
+  position: relative;
+  display: flex;
+  align-items: center;
   margin-bottom: 16px;
-  text-align: center;
+  padding: 0 4px;
+}
+
+.caption {
   font-size: 20px;
   line-height: 24px;
   font-weight: bold;
+}
+
+.caption__fullScreen{
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 24px;
+  height: 24px;
+  background-image: url('./assets/maximize-2.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .editors-block {

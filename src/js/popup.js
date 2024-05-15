@@ -1,6 +1,16 @@
 import yaml from 'js-yaml'
 
 const editorsBlock = document.querySelector('[data-element="editors-block"]')
+const fullScreen = document.querySelector('[data-element="caption__fullScreen"]')
+
+if (fullScreen) {
+  fullScreen.addEventListener('click', () => {
+    console.log('sdssds')
+    const url = chrome.runtime.getURL("/html/fullScreen.html")
+    chrome.tabs.create({ url })
+    window.close()
+  })
+}
 
 if (editorsBlock) setTimeout(editorsInit, 0)
 
