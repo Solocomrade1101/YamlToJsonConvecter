@@ -82,7 +82,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 /*--------------------*/
 body{
-    background: #1A1E2C;
+    background: #141724;
     font-family: "Onest";
     color: #fff;
 }
@@ -101,6 +101,7 @@ body{
     margin-top: 72px;
     font-size: 56px;
     line-height: 72px;
+    font-weight: bold;
 }
 
 .subtitle{
@@ -109,6 +110,7 @@ body{
     margin-bottom: 68px;
     font-size: 56px;
     line-height: 72px;
+    font-weight: bold;
 }
 .subtitle::after{
     content: '';
@@ -146,10 +148,11 @@ body{
 .manual__text-2::before{
     content: '2.';
 }
-
+.manual__picture{
+    width: 100%;
+}
 
 .manual__image{
-    width: 100%;
     height: auto;
     object-fit: cover;
 }

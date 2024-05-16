@@ -111,15 +111,19 @@ body {
 }
 
 .wrapper_full .editor-input{
-  height: 276px;
+  height: 298px;
 }
 
 .wrapper_full .editor-frame{
-  height: 215px;
+  height: 238px;
 }
 
 .wrapper_full .editor-frame_start{
-  height: 215px;
+  height: 238px;
+}
+
+.wrapper_full .editor-textarea{
+  width: 93%;
 }
 
 .content {

@@ -4,6 +4,7 @@
     "description": "Use YAML to JSON converter to transform YAML data into JSON format. Convert YAML to JSON online and offline.",
     "version": "1.0",
     "author": "Solocomrade",
+    "default_locale": "en",
     "action": {
         "default_popup": "html/popup.html",
         "default_icon": {
