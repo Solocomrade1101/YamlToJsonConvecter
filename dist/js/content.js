@@ -1,78 +1,62 @@
-let intervalId
-
-
-const addClock = () => {
-console.log('addClock')
-    let overlay = document.querySelector('.easyIt-ext')
-    if (!overlay) {
-        overlay = document.createElement('div')
-        overlay.setAttribute('class', 'easyIt-ext')
-    }
-
-    overlay.innerHTML = `
-         <div class="easyIt-data"></div>
-    `
-
-    const style = document.createElement('style')
-    style.textContent = `
-       .easyIt-ext{
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        pointer-events: none;
-        background: linear-gradient(0deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0,0) 100%);
-        z-index: 1000;
-       }
-
-       .easyIt-data{
-          font-size: 50px;
-          pointer-events: none;
-          color: #fff;
-          padding: 50px;
-       }
-    `
-    const body = document.querySelector('body')
-    body.appendChild(overlay)
-    body.appendChild(style)
-
-    intervalId = setInterval(() => {
-        const data = document.querySelector('.easyIt-data')
-        if (data) {
-            const d = new Date()
-            const hours = `${d.getHours()}`
-            const mins = `${d.getMinutes()}`
-            const secs = `${d.getSeconds()}`
-
-            data.textContent = `${hours.padStart(2, '0')}:${mins.padStart(2, '0')}:${secs.padStart(2, '0')}`
-        }
-    }, 1000)
+// Добавляет скрипт к документу и вызывает callback, когда скрипт загружен.
+function injectScript(file, node, callback) {
+    const th = document.getElementsByTagName(node)[0];
+    const script = document.createElement('script');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', file);
+    script.onload = callback; // Вызывается после загрузки скрипта
+    th.appendChild(script);
 }
 
-const removeClock = () => {
-    clearInterval(intervalId)
-    const content = document.querySelector('.easyIt-ext')
-    if (content) {
-        content.parentNode.removeChild(content)
-    }
+// Добавляет стиль к документу.
+function injectCSS(file, node) {
+    const th = document.getElementsByTagName(node)[0];
+    const style = document.createElement('link');
+    style.setAttribute('rel', 'stylesheet');
+    style.setAttribute('type', 'text/css');
+    style.setAttribute('href', file);
+    th.appendChild(style);
+}
+function injectTheme(file, node) {
+    const th = document.getElementsByTagName(node)[0];
+    const style = document.createElement('link');
+    style.setAttribute('rel', 'stylesheet');
+    style.setAttribute('type', 'text/css');
+    style.setAttribute('href', file);
+    th.appendChild(style);
 }
 
-chrome.storage.sync.get(['showClock'], (result) => {
-    if (result.showClock) {
-        addClock()
-    }
-});
+// Внедрение CodeMirror и зависимостей
+function initCodeMirror() {
+    // Здесь будет инициализация CodeMirror
+    const textareas = document.querySelectorAll('textarea');
+    textareas.forEach(textarea => {
+        const editor = CodeMirror.fromTextArea(textarea, {
+            lineNumbers: true,
+            mode: "yaml", // Выберите нужный режим для подсветки синтаксиса
+            theme: "dracula"
+        });
+    });
+}
 
-chrome.storage.onChanged.addListener((changes, namespace) => {
-    if (changes?.showClock) {
-        if (changes.showClock.newValue) {
-            addClock()
-        } else {
-            removeClock()
-        }
-    }
+// Внедряем стили CodeMirror
+
+
+// Внедряем основной скрипт CodeMirror, после чего внедряем скрипт режима и инициализируем CodeMirror
+injectScript(chrome.runtime.getURL('codemirror/codemirror.js'), 'head', function() {
+    console.log('CodeMirror main script loaded.');
+
+    // Дополнительно можно загрузить расширения для режима или темы
+    injectScript(chrome.runtime.getURL('codemirror/mode/yaml/yaml.js'), 'head', function() {
+        console.log('CodeMirror YAML mode script loaded.');
+
+        injectCSS(chrome.runtime.getURL('codemirror/codemirror.css'), 'head');
+        console.log('CodeMirror css.')
+
+        injectTheme(chrome.runtime.getURL('codemirror/theme/dracula.css'), 'head');
+        console.log('CodeMirror theme.')
+
+        // После загрузки всех зависимостей, инициализируем CodeMirror
+        initCodeMirror();
+    });
 });
