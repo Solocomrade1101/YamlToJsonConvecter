@@ -434,8 +434,8 @@ body {
   animation: backgroundFade 3s ease-in-out;
 }
 @keyframes backgroundFade {
-  0%, 90% { background-image: url("./assets/copy.svg"); }
-  20%, 70% { background-image: url("./assets/check.svg"); }
+  0%, 100% { background-image: url("./assets/copy.svg"); }
+  1%, 99% { background-image: url("./assets/check.svg"); }
 }
 
 .button-export {
