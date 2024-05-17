@@ -1,10 +1,5 @@
 import yaml from 'js-yaml'
-// const hljs = require('highlight.js/lib/core');
-// hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
-// hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
-// const highlightedCode = hljs.highlight('<span>Hello World!</span>', {language: 'yaml'}).value
-//
-// highlightedCode.useTheme('dark')
+
 const editorsBlock = document.querySelector('[data-element="editors-block"]')
 const fullScreen = document.querySelector('[data-element="caption__fullScreen"]')
 
@@ -200,10 +195,20 @@ function editorsInit() {
       }
   }
 
-  function copyFile () {
-    output.select()
-    document.execCommand("copy");
-    window.getSelection().removeAllRanges();
+  function copyFile (e) {
+    if (output.value === '') {
+      return
+    } else {
+      buttonCopy.classList.add('button-copy_success')
+      output.select()
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
+      setTimeout((e) => {
+        buttonCopy.classList.remove('button-copy_success')
+      }, 3000)
+    }
+
+
   }
 
   function clearAll () {

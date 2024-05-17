@@ -418,6 +418,7 @@ body {
   padding: 8px;
 }
 
+
 .button-copy::before {
   content: "";
   display: block;
@@ -426,6 +427,15 @@ body {
   background-image: url("./assets/copy.svg");
   background-repeat: no-repeat;
   background-size: 100%;
+}
+
+.button-copy_success::before{
+  background-image: url("./assets/copy.svg");
+  animation: backgroundFade 3s ease-in-out;
+}
+@keyframes backgroundFade {
+  0%, 90% { background-image: url("./assets/copy.svg"); }
+  20%, 70% { background-image: url("./assets/check.svg"); }
 }
 
 .button-export {
