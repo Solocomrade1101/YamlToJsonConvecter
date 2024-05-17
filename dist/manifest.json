@@ -22,23 +22,14 @@
     },
     "content_scripts": [
         {
-            "js": ["js/content.js"],
-            "matches": ["<all_urls>"]
-        },
-        {
-            "js": ["js/content.js"],
-            "matches": ["<all_urls>"]
+            "js": [
+                "js/content.js"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
         }
     ],
-    "web_accessible_resources": [{
-        "resources": [
-            "codemirror/codemirror.css",
-            "codemirror/codemirror.js",
-            "codemirror/mode/yaml/yaml.js",
-            "codemirror/theme/dracula.css"
-        ],
-        "matches": ["<all_urls>"]
-    }]
     "permissions": [
         "tabs",
         "activeTab",

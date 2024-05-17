@@ -1,9 +1,10 @@
 import yaml from 'js-yaml'
-onmessage = (event) => {
-  importScripts('../highlight.min.js');
-  const result = self.hljs.highlightAuto(event.data);
-  postMessage(result.value);
-}
+// const hljs = require('highlight.js/lib/core');
+// hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
+// hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
+// const highlightedCode = hljs.highlight('<span>Hello World!</span>', {language: 'yaml'}).value
+//
+// highlightedCode.useTheme('dark')
 const editorsBlock = document.querySelector('[data-element="editors-block"]')
 const fullScreen = document.querySelector('[data-element="caption__fullScreen"]')
 
