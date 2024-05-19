@@ -20,23 +20,11 @@
         "48": "assets/icon-48.png",
         "128": "assets/icon-128.png"
     },
-    "content_scripts": [
-        {
-            "js": [
-                "js/content.js"
-            ],
-            "matches": [
-                "<all_urls>"
-            ]
-        }
-    ],
     "permissions": [
         "tabs",
         "activeTab",
         "scripting",
-        "storage",
-        "alarms",
-        "notifications"
+        "storage"
     ],
     "host_permissions": [
         "<all_urls>"

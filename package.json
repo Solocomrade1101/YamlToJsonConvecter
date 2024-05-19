@@ -19,9 +19,7 @@
   },
   "dependencies": {
     "css-loader": "^6.8.1",
-    "highlight.js": "^11.9.0",
     "js-yaml": "^4.1.0",
-    "monaco-editor": "^0.48.0",
     "style-loader": "^3.3.3"
   }
 }
