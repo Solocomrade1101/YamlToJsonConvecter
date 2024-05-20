@@ -21,7 +21,6 @@
         "128": "assets/icon-128.png"
     },
     "permissions": [
-        "tabs",
         "storage"
     ],
     "background": {
