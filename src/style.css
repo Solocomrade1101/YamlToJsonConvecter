@@ -352,15 +352,19 @@ body {
   align-items: center;
   padding: 0;
 }
-
+.footer__link-block{
+  display: flex;
+  align-items: center;
+}
 .footer__link {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #646878;
+
 }
 .footer__link-text{
   margin-right: 8px;
+  color: #646878;
 }
 .star {
   position: relative;
