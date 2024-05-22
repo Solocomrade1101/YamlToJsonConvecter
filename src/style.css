@@ -359,16 +359,33 @@ body {
   text-decoration: none;
   color: #646878;
 }
-
-.footer__link::after {
-  content: "";
-  display: block;
+.footer__link-text{
+  margin-right: 8px;
+}
+.star {
+  position: relative;
+  display: inline-block;
   width: 16px;
   height: 16px;
-  margin-left: 4px;
-  background: url("./assets/chevron-right.svg") 100% no-repeat;
+  margin-right: 4px;
 }
 
+.star img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.star-fill {
+  opacity: 0;
+}
+
+.star-fill.visible {
+  opacity: 1;
+}
 .footer__rate {
   display: flex;
   align-items: center;
@@ -376,15 +393,6 @@ body {
   color: #646878;
   font-size: 14px;
   line-height: 16px;
-}
-
-.footer__rate::after {
-  content: "";
-  display: block;
-  width: 16px;
-  height: 16px;
-  margin-left: 4px;
-  background: url("./assets/star.svg") no-repeat;
 }
 
 .button-load {

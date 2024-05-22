@@ -2,7 +2,7 @@ import yaml from 'js-yaml'
 
 const editorsBlock = document.querySelector('[data-element="editors-block"]')
 const fullScreen = document.querySelector('[data-element="caption__fullScreen"]')
-
+const stars = document.querySelectorAll('.star')
 
 if (fullScreen) {
   fullScreen.addEventListener('click', () => {
@@ -11,6 +11,46 @@ if (fullScreen) {
     window.close()
   })
 }
+
+if (stars.length !== 0) {
+  stars.forEach(star => {
+    star.addEventListener('mouseover', handleMouseOver);
+    star.addEventListener('mouseout', handleMouseOut);
+    star.addEventListener('click', handleClick);
+  });
+
+  function handleClick(event) {
+    const index = parseInt(event.currentTarget.getAttribute('data-index'));
+    const footerLink = document.querySelector('.footer__link');
+    const link = index <= 3 ? '\n' +
+        'https://docs.google.com/forms/d/e/1FAIpQLSeiMiYzuB9W3kzXrBYhscp3agPnzX5O7W1TRHmmDnjxlFwbVg/viewform?usp=sf_link'
+        :
+        'https://chromewebstore.google.com/detail/yaml-to-json-converter/ljnpooaliebiknmmimdpdgahbeabjiln/reviews';
+    footerLink.setAttribute('href', link);
+  }
+
+  function handleMouseOver(event) {
+    const index = parseInt(event.currentTarget.getAttribute('data-index'));
+    fillStars(index);
+  }
+
+  function handleMouseOut() {
+    fillStars(0);
+  }
+
+  function fillStars(index) {
+    stars.forEach(star => {
+      const starIndex = parseInt(star.getAttribute('data-index'));
+      const starFill = star.querySelector('.star-fill');
+      if (starIndex <= index) {
+        starFill.classList.add('visible');
+      } else {
+        starFill.classList.remove('visible');
+      }
+    });
+  }
+}
+
 
 if (editorsBlock) setTimeout(editorsInit, 0)
 
