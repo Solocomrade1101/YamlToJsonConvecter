@@ -363,15 +363,14 @@ body {
 
 }
 .footer__link-text{
-  margin-right: 8px;
+  margin-right: 6px;
   color: #646878;
 }
 .star {
   position: relative;
   display: inline-block;
-  width: 16px;
+  width: 20px;
   height: 16px;
-  margin-right: 4px;
 }
 
 .star img {
