@@ -1,0 +1,77 @@
+@import "nullstyle";
+
+body{
+  background: #141724;
+  font-family: "Onest";
+  color: #fff;
+}
+
+.wrapper{
+  width: 100%;
+  height: 100%;
+}
+
+.content{
+  max-width: 732px;
+  margin: 0 auto;
+}
+
+.caption{
+  margin-top: 72px;
+  font-size: 56px;
+  line-height: 72px;
+  font-weight: bold;
+}
+
+.subtitle{
+  display: flex;
+  align-items: center;
+  margin-bottom: 68px;
+  font-size: 56px;
+  line-height: 72px;
+  font-weight: bold;
+}
+.subtitle::after{
+  content: '';
+  display: block;
+  width: 52px;
+  height: 52px;
+  margin-left: 20px;
+  background-image: url('../assets/check-circle.svg');
+}
+
+.manual{
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  margin-bottom: 72px;
+}
+
+/* .manual__item{} */
+
+.manual__text{
+  position: relative;
+  font-size: 28px;
+  line-height: 40px;
+  padding-left: 44px;
+  margin-bottom: 32px;
+}
+
+.manual__text::before{
+  content: '1.';
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.manual__text-2::before{
+  content: '2.';
+}
+.manual__picture{
+  width: 100%;
+}
+
+.manual__image{
+  height: auto;
+  object-fit: cover;
+}

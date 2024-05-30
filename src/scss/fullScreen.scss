@@ -1,91 +1,5 @@
-@charset "UTF-8";
-/*Обнуление*/
-* {
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
+@import "nullstyle";
 
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
-:focus, :active {
-  outline: none;
-}
-
-a:focus, a:active {
-  outline: none;
-}
-
-nav, footer, header, aside {
-  display: block;
-}
-
-html, body {
-  height: 100%;
-  width: 100%;
-  font-size: 100%;
-  line-height: 1;
-  font-size: 14px;
-  -ms-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-input, button, textarea {
-  font-family: inherit;
-}
-
-input::-ms-clear {
-  display: none;
-}
-
-button {
-  cursor: pointer;
-}
-
-button::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-
-a, a:visited {
-  text-decoration: none;
-  color: white;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-ul li {
-  list-style: none;
-}
-
-img {
-  vertical-align: top;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-size: inherit;
-  font-weight: inherit;
-}
-
-@font-face {
-  font-family: "Consolas";
-  src: url("./assets/consolas.ttf");
-}
-@font-face {
-  font-family: "Onest";
-  src: url("./assets/OnestBold1602-hint.ttf");
-  font-weight: bold;
-}
-@font-face {
-  font-family: "Onest";
-  src: url("./assets/OnestMedium1602-hint.ttf");
-}
-/*--------------------*/
 body {
   width: 468px;
   border-radius: 20px;
@@ -153,7 +67,7 @@ body {
   justify-content: space-between;
   width: 24px;
   height: 24px;
-  background-image: url('./assets/maximize-2.svg');
+  background-image: url('../assets/maximize-2.svg');
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -321,7 +235,7 @@ body {
 .editors__icon {
   width: 24px;
   height: 24px;
-  background-image: url("./assets/chevrons-down.svg");
+  background-image: url("../assets/chevrons-down.svg");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -409,7 +323,7 @@ body {
   width: 16px;
   height: 16px;
   margin-right: 8px;
-  background-image: url("./assets/download.svg");
+  background-image: url("../assets/download.svg");
   background-repeat: no-repeat;
   background-size: 100%;
 }
@@ -420,7 +334,7 @@ body {
   width: 16px;
   height: 16px;
   margin-left: 4px;
-  background-image: url("./assets/rotate-cw.svg");
+  background-image: url("../assets/rotate-cw.svg");
   background-repeat: no-repeat;
   background-size: 100%;
 }
@@ -435,18 +349,18 @@ body {
   display: block;
   width: 16px;
   height: 16px;
-  background-image: url("./assets/copy.svg");
+  background-image: url("../assets/copy.svg");
   background-repeat: no-repeat;
   background-size: 100%;
 }
 
 .button-copy_success::before{
-  background-image: url("./assets/copy.svg");
+  background-image: url("../assets/copy.svg");
   animation: backgroundFade 3s ease-in-out;
 }
 @keyframes backgroundFade {
-  0%, 100% { background-image: url("./assets/copy.svg"); }
-  1%, 99% { background-image: url("./assets/check.svg"); }
+  0%, 100% { background-image: url("../assets/copy.svg"); }
+  1%, 99% { background-image: url("../assets/check.svg"); }
 }
 
 .button-export {
@@ -460,7 +374,7 @@ body {
   width: 16px;
   height: 16px;
   margin-right: 8px;
-  background-image: url("./assets/upload.svg");
+  background-image: url("../assets/upload.svg");
   background-repeat: no-repeat;
   background-size: 100%;
 }

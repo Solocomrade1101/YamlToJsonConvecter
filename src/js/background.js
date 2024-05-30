@@ -1,3 +1,15 @@
+
+chrome.runtime.onInstalled.addListener(async () => {
+  let url = chrome.runtime.getURL("html/hello.html");
+  let tab = await chrome.tabs.create({ url });
+
+  chrome.storage.sync.get(['showClock'], (result) => {
+    if (result.showClock) {
+      chrome.action.setBadgeText({ text: 'ON' });
+    }
+  });
+});
+
 chrome.commands.onCommand.addListener( (command) => {
 
   chrome.tabs.update({}, async (tab) => {
@@ -15,37 +27,5 @@ chrome.commands.onCommand.addListener( (command) => {
       chrome.tabs.duplicate(tab.id);
     }
   });
-});
-
-//notifications
-chrome.alarms.onAlarm.addListener((alarm) => {
-  console.log('onAlarm', alarm)
-  chrome.notifications.create('notification1', {
-    type: 'basic',
-    iconUrl: '/icons/alert.png',
-    title: 'Напоминашка',
-    message: 'Ахтунг! Пришло время напомнить!',
-    buttons: [
-      { title: 'Спасибо' }
-    ],
-    priority: 0
-  }, (e) => {
-    console.log("Last error:", chrome.runtime.lastError);
-  });
-});
-
-chrome.notifications.onButtonClicked.addListener(async (notificationId, buttonIndex) => {
-  console.log({ notificationId, buttonIndex })
-});
-
-chrome.notifications.onClicked.addListener(async (notificationId) => {
-  chrome.storage.sync.get(['timer'], (result) => {
-    if (result.timer) {
-      chrome.alarms.create({ delayInMinutes: result.timer });
-    }
-  })
-
-  chrome.notifications.clear(notificationId)
-
 });
 

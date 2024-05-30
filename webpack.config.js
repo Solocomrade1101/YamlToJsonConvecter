@@ -1,57 +1,94 @@
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path')
+const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const htmlFiles = [
+  'fullScreen.html',
+  'hello.html',
+  'popup.html' // Добавьте здесь имена всех ваших HTML файлов
+];
+
+const htmlPlugins = htmlFiles.map(file => new HtmlWebpackPlugin({
+  template: `./src/html/${file}`,
+  filename: `html/${file}`,
+  minify: false,
+}));
+
 module.exports = {
-  watch: true,
-  mode: 'production',
   entry: {
-    filename: path.resolve(__dirname, 'src/popup.js'),
+    // Указываем все входные точки для файлов в src/js
+    background: './src/js/background.js',
+    popup: './src/js/popup.js', // Добавьте остальные файлы по аналогии
+
   },
   output: {
+    filename: 'js/[name].js',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'js/popup.js',
-    assetModuleFilename: 'assets/[name][ext][query]'
+    assetModuleFilename: 'assets/[name][ext]',
+    clean: true
   },
-  // performance: {
-  //   hints: false,
-  //   maxAssetSize: 512000,
-  //   maxEntrypointSize: 512000
-  // },
-  plugins: [new MiniCssExtractPlugin({filename:'css/popup.css'}), new HtmlWebpackPlugin({filename:'html/popup.html', template: 'src/popup.html'})],
-  module:{
-    
-      rules: [
-        {
-          test: /\.css$/,
-          use: [{
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              esModule: true
-            }
-          }, 'css-loader']
+  mode: 'development',
+  devtool: false, // Отключаем генерацию карт исходников
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false // Отключаем извлечение комментариев (лицензий)
+      }),
+      new HtmlMinimizerPlugin(),
+      new CssMinimizerPlugin(),
+    ],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: [
+              // Возможно, нужно добавить плагин для предотвращения использования eval
+              '@babel/plugin-transform-runtime'
+            ],
+          },
         },
-        {
-          test: /\.(png|svg|jpg|jpeg|gif)$/i,
-          type: 'asset/resource',
-        },
-        {
-          test: /\.(ttf|woff|woff2|eot)$/,
-          // loader: 'file-loader',
-          // options: {
-          //   name: 'fonts/[name].[ext]'
-          // }
-        },
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/[name][ext]'
+        }
+      }
+    ],
+  },
+  plugins: [
+    ...htmlPlugins,
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/assets', to: 'assets' },
       ],
-    },
-    optimization: {
-      minimize:true,
-      minimizer: [
-        new CssMinimizerPlugin(),
-        new TerserPlugin(),
-      ],
-    },
-    
-  
+    }),
+  ],
+  watch: true,
+  watchOptions: {
+    ignored: /node_modules/,
+  },
 }

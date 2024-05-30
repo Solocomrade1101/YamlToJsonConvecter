@@ -1,3 +1,6 @@
+import '../scss/hello.scss'
+import '../scss/popup.scss'
+import '../scss/fullScreen.scss'
 import yaml from 'js-yaml'
 
 const editorsBlock = document.querySelector('[data-element="editors-block"]')
@@ -140,7 +143,7 @@ function editorsInit() {
 
         output.value = JSON.stringify(result, null, 2)
         output.addEventListener('input', lineNumbers(output))
-        
+
         removeErrorStyles()
       } catch (err) {
         addErrorStyles()
@@ -173,7 +176,7 @@ function editorsInit() {
       editorFrame.style.overflow = 'hidden'
       output.style.overflowX = 'hidden'
     }
-    
+
   }
 
   function removeErrorStyles () {
@@ -192,9 +195,9 @@ function editorsInit() {
     inputLoad.addEventListener('change', () => {
       let file = inputLoad.files[0];
       let reader = new FileReader();
-    
+
       reader.readAsText(file);
-    
+
       reader.onload = () => {
         input.value = reader.result
         lineNumbers(input, 'paste')
@@ -206,33 +209,33 @@ function editorsInit() {
       };
       inputLoad.value = ''
     })
-    
-    
+
+
   }
 
   function exportFile () {
-      if (output.value !== '') {
-        let content = output.value;
-    
-        var blob = new Blob([content], { type: "text/plain" });
-        var url = URL.createObjectURL(blob);
-    
-        var a = document.createElement("a");
-        a.href = url;
+    if (output.value !== '') {
+      let content = output.value;
 
-        if(flug === 'YAML'){
-          a.download = "modify.json";
-        }
+      var blob = new Blob([content], { type: "text/plain" });
+      var url = URL.createObjectURL(blob);
 
-        if(flug === 'JSON'){
-          a.download = "modify.yaml";
-        }
-        
-        document.body.appendChild(a);
-        a.click();
-    
-        window.URL.revokeObjectURL(url);
+      var a = document.createElement("a");
+      a.href = url;
+
+      if(flug === 'YAML'){
+        a.download = "modify.json";
       }
+
+      if(flug === 'JSON'){
+        a.download = "modify.yaml";
+      }
+
+      document.body.appendChild(a);
+      a.click();
+
+      window.URL.revokeObjectURL(url);
+    }
   }
 
   function copyFile (e) {
@@ -262,7 +265,7 @@ function editorsInit() {
     editorLine.style.display = 'none'
     output.style.overflowX = 'hidden'
   }
-  
+
   function toogleTab (e) {
     let position = e.currentTarget.dataset.position
     let tab = e.currentTarget.dataset.role
