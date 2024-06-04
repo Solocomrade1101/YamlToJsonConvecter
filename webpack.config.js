@@ -7,14 +7,15 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const htmlFiles = [
-  'fullScreen.html',
-  'hello.html',
-  'popup.html' // Добавьте здесь имена всех ваших HTML файлов
+  { filename: 'fullScreen.html', chunks: ['fullScreen', 'fullScreenStyle'] },
+  { filename: 'hello.html', chunks: ['hello', 'helloStyle'] },
+  { filename: 'popup.html', chunks: ['popup', 'popupStyle'] },
 ];
 
 const htmlPlugins = htmlFiles.map(file => new HtmlWebpackPlugin({
-  template: `./src/html/${file}`,
-  filename: `html/${file}`,
+  template: `./src/html/${file.filename}`,
+  filename: `html/${file.filename}`,
+  chunks: file.chunks,
   minify: false,
 }));
 
@@ -23,7 +24,12 @@ module.exports = {
     // Указываем все входные точки для файлов в src/js
     background: './src/js/background.js',
     popup: './src/js/popup.js', // Добавьте остальные файлы по аналогии
+    fullScreen: './src/js/fullScreen.js',
+    hello: './src/js/hello.js',
 
+    fullScreenStyle: './src/scss/fullScreen.scss',
+    helloStyle: './src/scss/hello.scss',
+    popupStyle: './src/scss/popup.scss',
   },
   output: {
     filename: 'js/[name].js',
@@ -84,6 +90,8 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { from: 'src/assets', to: 'assets' },
+        { from: 'src/_locales', to: '_locales' },
+        { from: 'src/manifest.json', to: 'manifest.json' },
       ],
     }),
   ],

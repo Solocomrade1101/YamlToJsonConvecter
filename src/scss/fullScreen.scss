@@ -12,7 +12,7 @@ body {
 .wrapper_full .content{
   max-width: 702px;
   margin: 0 auto;
-  padding: 44px 0 124px;
+  padding: 44px 0 40px;
 }
 
 .wrapper_full .header{
@@ -147,7 +147,7 @@ body {
 .editor-frame::-webkit-scrollbar-thumb {
   background: #2C3040;
   border-radius: 100px;
-  cursor: pointer;
+  cursor: default;
 }
 
 .editor-frame::-webkit-scrollbar-track {
@@ -206,7 +206,7 @@ body {
 .editor-textarea::-webkit-scrollbar-thumb {
   background: #2C3040;
   border-radius: 100px;
-  cursor: pointer;
+  cursor: default;
 }
 
 .editor-textarea::-webkit-scrollbar-track {

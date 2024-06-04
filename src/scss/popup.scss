@@ -147,7 +147,7 @@ body {
 .editor-frame::-webkit-scrollbar-thumb {
   background: #2C3040;
   border-radius: 100px;
-  cursor: pointer;
+  cursor: default;
 }
 
 .editor-frame::-webkit-scrollbar-track {
@@ -206,7 +206,7 @@ body {
 .editor-textarea::-webkit-scrollbar-thumb {
   background: #2C3040;
   border-radius: 100px;
-  cursor: pointer;
+  cursor: default;
 }
 
 .editor-textarea::-webkit-scrollbar-track {
