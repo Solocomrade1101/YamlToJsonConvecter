@@ -186,7 +186,6 @@ body {
 }
 
 .editor-textarea {
-  position: relative;
   width: 89%;
   height: auto;
   overflow-y: hidden;
@@ -201,8 +200,6 @@ body {
 }
 
 .editor-textarea::-webkit-scrollbar {
-  position: absolute;
-  top: 0;
   height: 4px;
 }
 
